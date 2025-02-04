@@ -1,0 +1,187 @@
+{% extends "base.html" %}
+
+{% block title %}Employee Edit{% endblock title %}
+
+{% block employeeClass %}
+{% if activeclass == 1 %}
+active
+{% endif %}
+{% endblock employeeClass %}
+
+{% block patientClass %}
+{% if activeclass == 2 %}
+active
+{% endif %}
+{% endblock patientClass %}
+
+{% block managementClass %}
+{% if activeclass == 3 %}
+active
+{% endif %}
+{% endblock managementClass %}
+
+{% block bodytag %}onload='hide()'{% endblock bodytag %}
+
+{% block content %}
+<br><br>
+<div class='formback'> 
+    <center>
+    <h3>Update / Delete</h3>
+<form name='frm_u' method='POST' action=''>
+<div class='frmtxt'>EmpID</div>
+<select name='empid_u'>
+    {% for x in empid %}
+    <option value='{{x}}'>{{x}}</option>
+    {% endfor %}
+</select>
+<a href='/employee/u'><input type='submit' name = 'btn' value='Search' class='updatebtn' ></a>
+<a href='/employee/u'><input type='submit' name = 'btn' value='Delete' class='deletebtn' ></a>
+</form>
+
+<br>
+
+<form name='frm_main' method='post' action=''>
+
+<h3>FORM</h3><br>
+<div class='frmtxt'>EmpID</div>
+{% if data[0] == '' %}
+<input type='text' name = 'empid' placeholder='EmpID' value = '{{data[0]}}'><br>
+{% else %}
+<input type='text' name = 'empid' placeholder='EmpID' value = '{{data[0]}}' readonly><br>
+{% endif %}
+
+<div class='frmtxt'>SSN</div>
+<input type='text' name = 'ssn' placeholder='SSN' value='{{data[1]}}'><br>
+
+<div class='frmtxt'>E_FacID</div>
+<select name='e_facid'>
+{% for element in efacid %}
+    {% if element == data[2] %}
+    <option selected>{{ element }}</option>
+    {% else %}
+    <option>{{ element }}</option>
+    {% endif %}
+{% endfor %}
+</select><br>
+
+<div class='frmtxt' >Street</div>
+<input type='text' name = 'street' placeholder='Street' value='{{data[3]}}'><br>
+
+<div class='frmtxt'>City</div>
+<input type='text' name = 'city' placeholder='City' value='{{data[4]}}'><br>
+
+<div class='frmtxt'>State</div>
+<input type='text' name = 'state' placeholder='State' value='{{data[5]}}'><br>
+
+<div class='frmtxt'>Zip</div>
+<input type='text' name = 'zip' placeholder='Zip' value='{{data[6]}}'><br>
+
+<div class='frmtxt'>First Name</div>
+<input type='text' name = 'fname' placeholder='First Name' value='{{data[7]}}'><br>
+
+<div class='frmtxt'>Last Name</div>
+<input type='text' name = 'lname' placeholder='Last Name' value='{{data[8]}}'><br>
+
+<div class='frmtxt'>Middle Initial</div>
+<input type='text' name = 'minit' placeholder='Middle Initial' value='{{data[9]}}'><br>
+
+<div class='frmtxt'>Salary</div>
+<input type='text' name = 'salary' placeholder='Salary' value='{{data[10]}}'><br>
+
+<div class='frmtxt'>Hire date</div>
+<input type='date' name = 'hiredate' placeholder='Hire Date' value='{{data[11]}}'><br>
+
+<div class='frmtxt'>Job</div>
+<select name='jobclass' onchange='hide()' id='cate'>
+    {% if data[12] == 'MD' %}
+    <option value='MD' selected>MD</option>
+    {% else %}
+    <option value='MD'>MD</option>
+    {% endif %}
+
+    {% if data[12] == 'Admin' %}
+    <option value='Admin' selected>Admin</option>
+    {% else %}
+    <option value='Admin'>Admin</option>
+    {% endif %}
+
+    {% if data[12] == 'Nurse' %}
+    <option value='Nurse' selected>Nurse</option>
+    {% else %}
+    <option value='Nurse'>Nurse</option>
+    {% endif %}
+
+    {% if data[12] == 'HCP' %}
+    <option value = 'HCP' selected>HCP</option>
+    {% else %}
+    <option value = 'HCP'>HCP</option>
+    {% endif %}
+</select><br>
+
+<div class='hcp admin'>
+<div class='frmtxt'>Job Title</div>
+<input type='text' name = 'job_title' placeholder='Job Title' value='{{extradata[1]}}'><br>
+</div>
+
+<div class='nurse'>
+<div class='frmtxt'>Certification</div>
+<input type='text' name = 'certification' placeholder='Certification' value='{{extradata[1]}}'><br>
+</div>
+
+<div class='doctor'>
+<div class='frmtxt'>BC Date</div>
+<input type='date' name = 'bc_date' placeholder='Date' value='{{extradata[1]}}'><br>
+
+<div class='frmtxt'>Speciality</div>
+<input type='text' name = 'speciality' placeholder='Speciality' value='{{extradata[2]}}'><br>
+</div>
+{% if updateflag == 1 %}
+<a href='/employee/i'><input type='submit' value='Update' class='updatebtn' name = 'btn'></a>
+{% else %}
+<a href='/employee/i'><input type='submit' value='Submit' class='updatebtn' name = 'btn'></a>
+{% endif %}
+</form>
+</center>
+</div>
+{% endblock content %}
+
+{% block js %}
+function hideClass(cl){
+    document.querySelectorAll(cl).forEach(function(el) {
+        el.style.display = 'none';
+     });
+}
+function showClass(cl){
+    document.querySelectorAll(cl).forEach(function(el) {
+        el.style.display = '';
+     });
+}
+function hide(){
+    var cate = document.getElementById('cate').value;
+    if (cate == "Nurse"){
+        hideClass('.hcp');
+        hideClass('.admin');
+        hideClass('.doctor');
+        showClass('.nurse');
+        
+    }
+    else if(cate == "HCP"){
+        hideClass('.nurse');
+        hideClass('.doctor');
+        hideClass('.admin');
+        showClass('.hcp');
+    }
+    else if(cate == "MD"){
+        hideClass('.nurse');
+        hideClass('.admin');
+        hideClass('.hcp');
+        showClass('.doctor');
+    }
+    else{
+        hideClass('.nurse');
+        hideClass('.hcp');
+        hideClass('.doctor');
+        showClass('.admin');
+    }
+}
+{% endblock js %}

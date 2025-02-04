@@ -1,0 +1,147 @@
+{% extends "base.html" %}
+
+{% block title %}Patient Edit{% endblock title %}
+
+{% block employeeClass %}
+{% if activeclass == 1 %}
+active
+{% endif %}
+{% endblock employeeClass %}
+
+{% block patientClass %}
+{% if activeclass == 2 %}
+active
+{% endif %}
+{% endblock patientClass %}
+
+{% block managementClass %}
+{% if activeclass == 3 %}
+active
+{% endif %}
+{% endblock managementClass %}
+
+{% block bodytag %}onload='hide()'{% endblock bodytag %}
+
+{% block content %}
+<br><br>
+<div class='formback'> 
+    <center>
+    <h3>Update / Delete</h3>
+<form name='frm_u' method='POST' action=''>
+<div class='frmtxt'>Patient id</div>
+<select name='patid_u'>
+    {% for x in patid %}
+    <option value='{{x}}'>{{x}}</option>
+    {% endfor %}
+</select>
+<a href='/employee/u'><input type='submit' name = 'btn' value='Search' class='updatebtn' ></a>
+<a href='/employee/u'><input type='submit' name = 'btn' value='Delete' class='deletebtn' ></a>
+</form>
+
+<br>
+
+<form name='frm_main' method='post' action=''>
+
+<h3>FORM</h3><br>
+<div class='frmtxt'>Patient ID</div>
+{% if data[0] == '' %}
+<input type='text' name='patid' placeholder='PatientID' value = '{{data[0]}}'><br>
+{% else %}
+<input type='text' name='patid' placeholder='PatientID' value = '{{data[0]}}' readonly><br>
+{% endif %}
+
+<div class='frmtxt'>First Name</div>
+<input type='text' name = 'fname' placeholder='First Name' value='{{data[1]}}'><br>
+
+<div class='frmtxt'>Last Name</div>
+<input type='text' name = 'lname' placeholder='Last Name' value='{{data[2]}}'><br>
+
+<div class='frmtxt'>Middle Initial</div>
+<input type='text' name = 'minit' placeholder='Middle Initial' value='{{data[3]}}'><br>
+
+<div class='frmtxt' >Street</div>
+<input type='text' name = 'street' placeholder='Street' value='{{data[4]}}'><br>
+
+<div class='frmtxt'>City</div>
+<input type='text' name = 'city' placeholder='City' value='{{data[5]}}'><br>
+
+<div class='frmtxt'>State</div>
+<input type='text' name = 'state' placeholder='State' value='{{data[6]}}'><br>
+
+<div class='frmtxt'>Zip</div>
+<input type='text' name = 'zip' placeholder='Zip' value='{{data[7]}}'><br>
+
+<div class='frmtxt'>Primary Doctor ID</div>
+<select name='pdid'>
+    {% for x in docid %}
+    {% if x == data[8] %}
+    <option value='{{x}}' selected>{{x}}</option>
+    {% else %}
+    <option value='{{x}}'>{{x}}</option>
+    {% endif %}
+    {% endfor %}
+</select>
+<br>
+
+<div class='frmtxt'>Patient Insurance ID</div>
+<select name='piid'>
+    {% for x in insid %}
+    {% if x == data[9] %}
+    <option value='{{x}}' selected>{{x}}</option>
+    {% else %}
+    <option value='{{x}}'>{{x}}</option>
+    {% endif %}
+    {% endfor %}
+</select>
+<br>
+
+{% if updateflag == 1 %}
+<a href='/employee/i'><input type='submit' value='Update' class='updatebtn' name = 'btn'></a>
+{% else %}
+<a href='/employee/i'><input type='submit' value='Submit' class='updatebtn' name = 'btn'></a>
+{% endif %}
+</form>
+</center>
+</div>
+{% endblock content %}
+
+{% block js %}
+function hideClass(cl){
+    document.querySelectorAll(cl).forEach(function(el) {
+        el.style.display = 'none';
+     });
+}
+function showClass(cl){
+    document.querySelectorAll(cl).forEach(function(el) {
+        el.style.display = '';
+     });
+}
+function hide(){
+    var cate = document.getElementById('cate').value;
+    if (cate == "Nurse"){
+        hideClass('.hcp');
+        hideClass('.admin');
+        hideClass('.doctor');
+        showClass('.nurse');
+        
+    }
+    else if(cate == "HCP"){
+        hideClass('.nurse');
+        hideClass('.doctor');
+        hideClass('.admin');
+        showClass('.hcp');
+    }
+    else if(cate == "MD"){
+        hideClass('.nurse');
+        hideClass('.admin');
+        hideClass('.hcp');
+        showClass('.doctor');
+    }
+    else{
+        hideClass('.nurse');
+        hideClass('.hcp');
+        hideClass('.doctor');
+        showClass('.admin');
+    }
+}
+{% endblock js %}

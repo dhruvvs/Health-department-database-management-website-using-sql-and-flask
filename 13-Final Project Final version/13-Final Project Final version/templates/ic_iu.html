@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+
+{% block employeeClass %}
+{% if activeclass == 1 %}
+active
+{% endif %}
+{% endblock employeeClass %}
+
+{% block patientClass %}
+{% if activeclass == 2 %}
+active
+{% endif %}
+{% endblock patientClass %}
+
+{% block managementClass %}
+{% if activeclass == 3 %}
+active
+{% endif %}
+{% endblock managementClass %}
+
+{% block title %}Insurance Company{% endblock title %}
+
+{% block content %}
+<br><br>
+<center>
+<div class='formback'> 
+<h1>Custom View</h1>
+<form name='frm' action='/view/2/insurancecompanyinvoicecustom' method='POST'>
+    <div class='frmtxt'>Enter a Date</div>
+    <input type='date' name='date' placeholder='Date' value=''>
+    <a href='/view/2/insurancecompanyinvoicecustom'><input type='submit' value='View' class='updatebtn' name = 'btn'></a>
+</form>
+</div>
+</center>
+{% endblock content %}

@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}Patient Main{% endblock title %}
+
+{% block patientClass %}active{% endblock patientClass %}
+{% block content %}
+<center>
+    <div class='content'>
+    <h1>Patient Management</h1>
+    <h2>New Patient (Create new patient records)</h2>
+    <a href="/patientiu">Edit</a>&nbsp;&nbsp;&nbsp;
+    <a href="/view/2/patient">View</a><br><br>
+
+    <h2>Manage Appointment (Create appointments and update with charges when complete)</h2><br>
+    <a href="/appointmentiu">New Appointment</a>&nbsp;&nbsp;&nbsp;
+    <a href="/view/2/patientappointment">View</a><br><br>
+
+    <h2>Insurance Company Invoice (Generate daily insurance company invoices with patient subtotals)</h2>
+    <a href="/iciu">Custom View</a>&nbsp;&nbsp;&nbsp;
+    <a href="/view/2/insurancecompanyinvoice">View</a><br><br>
+    </div>
+</center>
+{% endblock content %}

@@ -1,0 +1,138 @@
+{% extends "base.html" %}
+
+
+{% block employeeClass %}
+{% if activeclass == 1 %}
+active
+{% endif %}
+{% endblock employeeClass %}
+
+{% block patientClass %}
+{% if activeclass == 2 %}
+active
+{% endif %}
+{% endblock patientClass %}
+
+{% block managementClass %}
+{% if activeclass == 3 %}
+active
+{% endif %}
+{% endblock managementClass %}
+
+{% block title %}Medical Offices{% endblock title %}
+
+{% block bodytag %}onload='hide()'{% endblock bodytag %}
+
+{% block content %}
+<br><br>
+<div class='formback'> 
+    <center>
+        <h1> Facilities </h1>
+    <h2>Medical Offices and Out Patient Surgery</h2>
+    <h3>Update / Delete</h3>
+<form name='frm_u' method='POST' action=''>
+<div class='frmtxt'>FacID</div>
+<select name='facid_u'>
+    {% for x in facids %}
+    {% if data[0] != ''%}
+    {% if x == data[0] %}
+    <option value='{{x}}' selected>{{x}}</option>
+    {% else %}
+    <option value='{{x}}'>{{x}}</option>
+    {% endif %}
+    {% else %}
+    <option value='{{x}}'>{{x}}</option>
+    {% endif %}
+    {% endfor %}
+</select>
+<a href='/medical_offices'><input type='submit' name = 'btn' value='Search' class='updatebtn' ></a>
+<a href='/medical_offices'><input type='submit' name = 'btn' value='Delete' class='deletebtn' ></a>
+
+<br>
+
+
+<h3>FORM</h3><br>
+<div class='frmtxt'>FacID</div>
+{% if updateflag == 1 %}
+<input type="text" name='facid' placeholder='Facility ID' value='{{data[0]}}' readonly>
+{% else %}
+<input type="text" name='facid' placeholder='Facility ID' value='{{data[0]}}'>
+{% endif %}
+<br>
+
+<div class='frmtxt' >Street</div>
+<input type='text' name = 'street' placeholder='Street' value='{{data[1]}}'><br>
+
+<div class='frmtxt'>City</div>
+<input type='text' name = 'city' placeholder='City' value='{{data[2]}}'><br>
+
+<div class='frmtxt'>State</div>
+<input type='text' name = 'state' placeholder='State' value='{{data[3]}}'><br>
+
+<div class='frmtxt'>Zip</div>
+<input type='text' name = 'zip' placeholder='Zip' value='{{data[4]}}'><br>
+
+<div class='frmtxt'>Size</div>
+<input type='text' name = 'size' placeholder='Size' value='{{data[5]}}'><br>
+
+<div class='frmtxt'>Facility Type</div>
+
+<select name = 'ftype' onchange = 'hide();' id='cate'>
+    {% if data[6] == 'OPS' %}
+    <option value='Office'>Office</option>
+    <option value='OPS' selected>Out Patient Surgery</option>
+    {% else %}
+    <option value='Office' selected>Office</option>
+    <option value='OPS'>Out Patient Surgery</option>
+    {% endif %}
+</select><br>
+
+<div class='Office'>
+    <div class='frmtxt'>Office Count</div>
+    <input type='text' name = 'office_count' placeholder='Office Count' value='{{extradata[1]}}'><br>
+</div>
+
+<div class='ops'>
+    <div class='frmtxt'>Room count</div>
+    <input type='text' name = 'room_count' placeholder='Room Count' value='{{extradata[2]}}'><br>
+
+    <div class='frmtxt'>P Code</div>
+    <input type='text' name = 'p_code' placeholder='P Code' value='{{extradata[3]}}'><br>
+
+    <div class='frmtxt'>Description</div>
+    <input type='text' name = 'description' placeholder='Description' value='{{extradata[4]}}'><br>
+</div>
+
+{% if updateflag == 1 %}
+<a href='/employee/i'><input type='submit' value='Update' class='updatebtn' name = 'btn'></a>
+{% else %}
+<a href='/employee/i'><input type='submit' value='Submit' class='updatebtn' name = 'btn'></a>
+{% endif %}
+</form>
+</center>
+</div>
+{% endblock content %}
+
+{% block js %}
+function hideClass(cl){
+    document.querySelectorAll(cl).forEach(function(el) {
+        el.style.display = 'none';
+     });
+}
+function showClass(cl){
+    document.querySelectorAll(cl).forEach(function(el) {
+        el.style.display = '';
+     });
+}
+function hide(){
+    var cate = document.getElementById('cate').value;
+    if (cate == "OPS"){
+        hideClass('.Office');
+        showClass('.ops');
+    }
+    else{
+        hideClass('.ops');
+        showClass('.Office');
+    }
+}
+{% endblock js %}

@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}Complete Appointment{% endblock title %}
+{% block patientClass %}active{% endblock patientClass %}
+{% block content %}
+<br><br>
+<center>
+    <div class='content'>
+        <form action='/manageappointment/{{appno}}' method='POST'>
+            <h2>
+                Doctor: {{data[0]}} - {{data[1]}}<br>
+                Patient: {{data[2]}} - {{data[3]}}<br>
+                Facility: {{data[4]}} - {{data[5]}}<br>
+                Appointment Date and Time: {{data[6]}}<br>
+            </h2>
+                <div class='frmtxt'>Enter Cost</div>
+                <input type='text' name='cost' placeholder='Cost'><br>
+                <input type='submit' value='Submit' class='updatebtn'>
+        </form>
+    </div>
+</center>
+{% endblock content %}

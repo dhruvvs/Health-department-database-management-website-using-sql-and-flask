@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}View {{activeclass}}{% endblock title %}
+
+{% block employeeClass %}
+{% if activeclass == 1 %}
+active
+{% endif %}
+{% endblock employeeClass %}
+
+{% block patientClass %}
+{% if activeclass == 2 %}
+active
+{% endif %}
+{% endblock patientClass %}
+
+{% block managementClass %}
+{% if activeclass == 3 %}
+active
+{% endif %}
+{% endblock managementClass %}
+
+{% block content %}
+<br><br>
+<table style="width: 100%;">
+    <tr>
+        {% for x in heading %}
+        <th>{{x}}</th>
+        {% endfor %}
+    </tr>
+    {% for x in data %}
+    <tr>
+        {% for y in x %}
+        {% if y == None %}
+        <td></td>
+        {% else %}
+        <td>{{y|safe}}</td>
+        {% endif %}
+        {% endfor %}
+    </tr>
+    {% endfor %}
+</table>
+{% endblock content %}

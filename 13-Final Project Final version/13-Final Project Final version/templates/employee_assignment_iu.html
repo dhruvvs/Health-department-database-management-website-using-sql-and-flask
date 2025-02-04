@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+
+
+{% block employeeClass %}
+{% if activeclass == 1 %}
+active
+{% endif %}
+{% endblock employeeClass %}
+
+{% block patientClass %}
+{% if activeclass == 2 %}
+active
+{% endif %}
+{% endblock patientClass %}
+
+{% block managementClass %}
+{% if activeclass == 3 %}
+active
+{% endif %}
+{% endblock managementClass %}
+
+{% block title %} Employee Assignment{% endblock title %}
+
+{% block bodytag %}onload='hide()'{% endblock bodytag %}
+
+{% block content %}
+<br><br>
+<div class='formback'> 
+    <center>
+        <h1> Employee Assignments </h1>
+    <h3>Update</h3>
+<form name='frm_u' method='POST' action=''>
+<div class='frmtxt'>Employee ID</div>
+{% if showflag == 1 %}
+<select name = 'empid' disabled='true'>
+    {% for x in empid %}
+    {% if x == curr_empid %}
+    <option value='{{x}}' selected>{{curr_empid}}</option>
+    {% else %}
+    <option value='{{x}}'>{{curr_empid}}</option>
+    {% endif %}
+    {% endfor %}
+</select>
+<a href='/medical_offices'><input type='submit' name = 'btn' value='Re Search' class='updatebtn' ></a><br>
+{% else %}
+<select name = 'empid'>
+    {% for x in empid %}
+    <option value='{{x}}'>{{x}}</option>
+    {% endfor %}
+</select>
+<a href='/medical_offices'><input type='submit' name = 'btn' value='Search' class='updatebtn' ></a><br>
+{% endif %}
+<input type='text' class = 'hid' name='empid' value = '{{curr_empid}}'>
+{% if showflag == 1 %}
+<div class='frmtxt'>Facility ID</div>
+<select name = 'facid'>
+    {% for x in facid %}
+    {% if x == curr_facid %}
+    <option value = '{{x}}' selected>{{x}}</option>
+    {% else %}
+    <option value = '{{x}}'>{{x}}</option>
+    {% endif %}
+    {% endfor %}
+</select>
+<a href='/medical_offices'><input type='submit' name = 'btn' value='Re Assign' class='updatebtn' ></a>
+{% endif %}
+<br>
+</form>
+</center>
+</div>
+{% endblock content %}
+
+{% block js %}
+function hideClass(cl){
+    document.querySelectorAll(cl).forEach(function(el) {
+        el.style.display = 'none';
+     });
+}
+function showClass(cl){
+    document.querySelectorAll(cl).forEach(function(el) {
+        el.style.display = '';
+     });
+}
+function hide(){
+    hideClass('.hid');
+}
+{% endblock js %}

@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}Management Main{% endblock title %}
+
+{% block managementClass %}active{% endblock managementClass %}
+{% block content %}
+<center>
+<h1>Management and Reporting</h1>
+</center>
+<div class="managementContent">
+    <a href="/q1">View</a>&nbsp;For a given day, a report of the revenue (patient charges recorded) by facility, with subtotals and a total.<br><br>
+    <a href="/q2">View</a>&nbsp;For a user-selected date and a user-selected physician, a list of appointments.<br><br>
+    <a href="/q3">View</a>&nbsp;For a user-selected time period (begin date and end date) and a user- selected facility, a list of appointments with detail for date-time, physician, patient, and description.<br><br>
+    <a href="/q4">View</a>&nbsp;For a user-selected month compute the 5 best days (in terms of total revenue) for MHS.<br><br>
+    <a href="/q5">View</a>&nbsp;For a user-selected time period (begin date and end date) compute the average daily revenue for each insurance company.<br><br>
+</div>
+{% endblock content %}

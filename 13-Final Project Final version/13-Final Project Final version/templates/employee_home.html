@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}Employee Main{% endblock title %}
+
+{% block employeeClass %}active{% endblock employeeClass %}
+{% block content %}
+    <center>
+    <div class="content">
+    <center> 
+    <h1>Employee and Facility Management</h1>
+    <h2>Employee</h2>
+    <a href="/employee/i">Edit</a>&nbsp;&nbsp;&nbsp;
+    <a href="/view/1/employee">View</a><br><br>
+
+    <h2>Medical Offices</h2>
+    <a href="/medical_offices">Edit</a>&nbsp;&nbsp;&nbsp;
+    <a href="/view/1/office">View</a><br><br>
+
+    <h2>Out-patient Surgery Facilities</h2>
+    <a href="/medical_offices">Edit</a>&nbsp;&nbsp;&nbsp;
+    <a href="/view/1/outpatient_surgery">View</a><br><br>
+
+    <h2>Employee Assignments</h2>
+    <a href="/employee_assignments">Edit</a>&nbsp;&nbsp;&nbsp;
+    <a href="/view/1/employeeassignment">View</a><br><br>
+
+    <h2>Insurance Companies</h2>
+    <a href="/insurance_company">Edit</a>&nbsp;&nbsp;&nbsp;
+    <a href="/view/1/insurance_company">View</a><br><br>
+
+    <h2>Get Invoice Details</h2>
+    <a href="/view/1/invoiceEverything">View</a><br><br>
+    </center>
+    </div>
+    </center>
+{% endblock content %}
+

@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+
+
+{% block employeeClass %}
+{% if activeclass == 1 %}
+active
+{% endif %}
+{% endblock employeeClass %}
+
+{% block patientClass %}
+{% if activeclass == 2 %}
+active
+{% endif %}
+{% endblock patientClass %}
+
+{% block managementClass %}
+{% if activeclass == 3 %}
+active
+{% endif %}
+{% endblock managementClass %}
+
+{% block title %}Insurance Company{% endblock title %}
+
+{% block bodytag %}onload='hide()'{% endblock bodytag %}
+
+{% block content %}
+<br><br>
+<div class='formback'> 
+    <center>
+        <h1>Insurance Company</h1>
+    <h3>Update / Delete</h3>
+<form name='frm_u' method='POST' action=''>
+<div class='frmtxt'>InsID</div>
+<select name='insid_u'>
+    {% for x in insid %}
+    {% if data[0] != ''%}
+    {% if x == data[0] %}
+    <option value='{{x}}' selected>{{x}}</option>
+    {% else %}
+    <option value='{{x}}'>{{x}}</option>
+    {% endif %}
+    {% else %}
+    <option value='{{x}}'>{{x}}</option>
+    {% endif %}
+    {% endfor %}
+</select>
+<a href='/medical_offices'><input type='submit' name = 'btn' value='Search' class='updatebtn' ></a>
+<a href='/medical_offices'><input type='submit' name = 'btn' value='Delete' class='deletebtn' ></a>
+
+<br>
+
+
+<h3>FORM</h3><br>
+<div class='frmtxt'>Insurance ID</div>
+{% if updateflag == 1 %}
+<input type="text" name='insid' placeholder='Insurance Company ID' value='{{data[0]}}' readonly>
+{% else %}
+<input type="text" name='insid' placeholder='insurance Company ID' value='{{data[0]}}'>
+{% endif %}
+<br>
+
+<div class='frmtxt' >Name</div>
+<input type='text' name = 'name' placeholder='Insurance Company Name' value='{{data[1]}}'><br>
+
+<div class='frmtxt' >Street</div>
+<input type='text' name = 'street' placeholder='Street' value='{{data[2]}}'><br>
+
+<div class='frmtxt'>City</div>
+<input type='text' name = 'city' placeholder='City' value='{{data[3]}}'><br>
+
+<div class='frmtxt'>State</div>
+<input type='text' name = 'state' placeholder='State' value='{{data[4]}}'><br>
+
+<div class='frmtxt'>Zip</div>
+<input type='text' name = 'zip' placeholder='Zip' value='{{data[5]}}'><br>
+
+{% if updateflag == 1 %}
+<a href='/employee/i'><input type='submit' value='Update' class='updatebtn' name = 'btn'></a>
+{% else %}
+<a href='/employee/i'><input type='submit' value='Submit' class='updatebtn' name = 'btn'></a>
+{% endif %}
+</form>
+</center>
+</div>
+{% endblock content %}
+
+{% block js %}
+function hideClass(cl){
+    document.querySelectorAll(cl).forEach(function(el) {
+        el.style.display = 'none';
+     });
+}
+function showClass(cl){
+    document.querySelectorAll(cl).forEach(function(el) {
+        el.style.display = '';
+     });
+}
+function hide(){
+    var cate = document.getElementById('cate').value;
+    if (cate == "OPS"){
+        hideClass('.Office');
+        showClass('.ops');
+    }
+    else{
+        hideClass('.ops');
+        showClass('.Office');
+    }
+}
+{% endblock js %}

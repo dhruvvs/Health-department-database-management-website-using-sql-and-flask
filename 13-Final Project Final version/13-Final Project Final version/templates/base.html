@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{%block title%}{%endblock%}</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <script>
+    {% block js %}{% endblock js %}
+    </script>
+</head>
+<body {% block bodytag %}{% endblock bodytag %}>
+    <center>
+        <nav>
+            <a href="/employee" class = "{% block employeeClass%} {% endblock %}">Employee</a>
+            <a href="/patient" class = "{% block patientClass%} {% endblock %}">Patient</a>
+            <a href="/management" class = "{% block managementClass%} {% endblock %}">Management</a>
+        </nav>
+    </center>
+        {% block content%}
+        {% endblock%}
+    </body>
+</html>

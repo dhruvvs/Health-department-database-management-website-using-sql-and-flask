@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}Q2{% endblock title %}
+
+{% block employeeClass %}
+{% if activeclass == 1 %}
+active
+{% endif %}
+{% endblock employeeClass %}
+
+{% block patientClass %}
+{% if activeclass == 2 %}
+active
+{% endif %}
+{% endblock patientClass %}
+
+{% block managementClass %}
+{% if activeclass == 3 %}
+active
+{% endif %}
+{% endblock managementClass %}
+
+{% block content %}
+<br><br>
+<center>
+<div class='formback'>
+<h1>Question 2</h1>
+<form name='frm' action='/view/3/q2' method='POST'>
+    <div class='frmtxt'>Enter a Date</div>
+    <input type='date' name='date' placeholder='Date' value=''><br>
+    <div class='frmtxt'>Enter Physician</div>
+    <select name='phy'>
+    {% for x in phy %}
+    <option value='{{x[0]}}'>{{x[0]}} {{x[1]}}</option>
+    {% endfor %}
+    </select><br>
+    <a href='/view/3/q2'><input type='submit' value='View' class='updatebtn' name = 'btn'></a>
+</form>
+</div>
+</center>
+{% endblock content %}

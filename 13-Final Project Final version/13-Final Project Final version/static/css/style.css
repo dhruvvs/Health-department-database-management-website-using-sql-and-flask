@@ -1,0 +1,107 @@
+body {
+    margin-top: 40px;
+}
+input[type="button"], button, a{
+    cursor: pointer;
+}
+nav a {
+    color: #161616;
+    font-size: 20px;
+    margin-left: 50px;
+    text-decoration: none;
+    padding: 15px;
+    border-radius: 8px;
+}
+nav a:hover{
+    color: white;
+    background-color: #161616;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    cursor: pointer;
+}
+.active {
+    color: white;
+    background-color: #161616;
+
+}
+.content a{
+    text-decoration: none;
+    font-size: 20px;
+}
+table, th, td{
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+th, td{
+    padding: 5px;
+    text-align: center;
+}
+tr:hover{
+    background-color: #D6EEEE;
+    cursor: default;
+}
+td:hover{
+    background-color: #94e5e5;
+    cursor: default;
+}
+.managementContent a {
+    text-decoration: none;
+    background-color: blue;
+    color: white;
+    padding: 5px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+}
+
+.managementContent a:hover{
+    background-color: lightblue;
+    color: blue;
+}
+input, select {
+    width: 50%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+.updatebtn {
+    display: inline-block;
+    width: 10%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: small;
+}
+.deletebtn {
+    display: inline-block;
+    width: 10%;
+    background-color: #af544c;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 5px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: small;
+}
+.formback {
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+}
+.frmtxt {
+    display: inline-block;
+    margin: 10px 20px;
+}
+.content>a:link {
+    color: blue;
+  }
+  
+  .content>a:visited {
+    color: blue;
+  }
